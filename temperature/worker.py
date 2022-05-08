@@ -6,7 +6,7 @@ from celery import shared_task
 
 @periodic_task(run_every=(crontab(second='*/1')), name="some_task", ignore_result=True)
 def some_task():
-    print("PEPITO")
+    print("SOME_TASK")
 
 @shared_task
 def task():

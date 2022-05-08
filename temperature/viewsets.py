@@ -34,12 +34,14 @@ def latest_temperature(request):
     }
     return Response(response)
 
+
+
 def get_media_temp():
     date_from = timezone.now() - timezone.timedelta(days=1)
-    last_day_temps = list(map(lambda x: model_to_dict(x), list(Temperature.objects.filter(created_at__gte=date_from))))
+    last_day_temps = Temperature.objects.filter(created_at__gte=date_from)
     
     media = 0
     for temp in last_day_temps:
-        media += temp["current_temp"]
+        media += temp.current_temp
 
     return media / len(last_day_temps)
